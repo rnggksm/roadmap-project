@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"expense-tracker/handler"
 	"fmt"
 
 	"github.com/spf13/cobra"
@@ -16,7 +17,7 @@ var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Update an existing expense",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Updating ID: "+fmt.Sprint(updateID), " Description: "+updateDescription, " Amount: "+fmt.Sprint(updateAmount))
+		handler.UpdateExpense(updateID, updateDescription, updateAmount)
 	},
 }
 

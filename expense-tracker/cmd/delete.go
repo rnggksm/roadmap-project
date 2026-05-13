@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"expense-tracker/handler"
 	"fmt"
 
 	"github.com/spf13/cobra"
@@ -12,8 +13,7 @@ var deleteCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "Delete an expense",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Deleting Id: ", deleteID)
-		// Implement the logic to delete an expense here
+		handler.DeleteExpense(deleteID)
 	},
 }
 
