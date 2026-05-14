@@ -112,9 +112,25 @@ func (s *TrackerService) DeleteExpense(id int) {
 	fmt.Println("Expense deleted successfully")
 }
 
-func (s *TrackerService) SummaryExpenses() {
+func (s *TrackerService) SummaryExpenses(month int) {
+	// if month is 0, summary all expenses
+	var filteredExpenses []model.Expense
+	if month == 0 {
+		filteredExpenses = s.Expenses
+	} else {
+		for _, expense := range s.Expenses {
+			expenseMonth := time.Time{}
+			if expense.CreatedAt != "" {
+				expenseMonth, _ = time.Parse(time.RFC3339, expense.CreatedAt)
+			}
+			if int(expenseMonth.Month()) == month {
+				filteredExpenses = append(filteredExpenses, expense)
+			}
+		}
+	}
+
 	total := 0.0
-	for _, expense := range s.Expenses {
+	for _, expense := range filteredExpenses {
 		total += expense.Amount
 	}
 

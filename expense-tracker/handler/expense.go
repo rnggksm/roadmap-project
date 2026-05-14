@@ -28,8 +28,8 @@ func (h *ExpenseHandler) DeleteExpense(id int) {
 	h.svc.DeleteExpense(id)
 }
 
-func (h *ExpenseHandler) SummaryExpenses() {
-	h.svc.SummaryExpenses()
+func (h *ExpenseHandler) SummaryExpenses(month int) {
+	h.svc.SummaryExpenses(month)
 }
 
 func (h *ExpenseHandler) UpdateExpense(id int, description string, amount float64) {
