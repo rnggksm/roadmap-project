@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"expense-tracker/handler"
 	"log"
 
 	"github.com/spf13/cobra"
@@ -16,7 +15,7 @@ var addCmd = &cobra.Command{
 	Use:   "add",
 	Short: "Add a new expense",
 	Run: func(cmd *cobra.Command, args []string) {
-		handler.AddExpense(description, amount)
+		expenseHandler.AddExpense(description, amount)
 	},
 }
 

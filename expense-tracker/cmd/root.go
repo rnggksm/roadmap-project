@@ -4,6 +4,8 @@ Copyright © 2026 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"expense-tracker/handler"
+	"expense-tracker/internal/service"
 	"log"
 
 	"github.com/spf13/cobra"
@@ -24,7 +26,15 @@ to quickly create a Cobra application.`,
 	// Run: func(cmd *cobra.Command, args []string) { },
 }
 
+var expenseHandler *handler.ExpenseHandler
+
 func init() {
+	svc, err := service.NewTrackerService()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	expenseHandler = handler.NewExpenseHandler(svc)
 	rootCmd.AddCommand(addCmd, listCmd, deleteCmd, summaryCmd, updateCmd)
 }
 
